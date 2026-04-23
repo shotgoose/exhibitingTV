@@ -21,48 +21,48 @@
     <div class="tv-frame"></div>
   </div>
 
-  <script>
-    const buttons = document.querySelectorAll(".tv-button");
-    const screen = document.getElementById("screen");
-    const content = document.getElementById("screen-content");
+    <script>
+        const buttons = document.querySelectorAll(".tv-button");
+        const screen = document.getElementById("screen");
+        const content = document.getElementById("screen-content");
 
     function loadPage(page) {
-      fetch(page)
+        fetch(page)
         .then(response => response.text())
         .then(html => {
-          content.innerHTML = html;
-          content.scrollTop = 0;
-        })
-        .catch(error => {
-          content.innerHTML = "<p>Could not load page.</p>";
-          console.error(error);
-        });
-    }
+                content.innerHTML = `<div class="channel-page">${html}</div>`;
+            content.scrollTop = 0;
+      })
+      .catch(error => {
+        content.innerHTML = "<div class='channel-page'><p>Could not load page.</p></div>";
+        console.error(error);
+      });
+  }
 
     document.querySelector(".channel-1-button").addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("pressed"));
-      document.querySelector(".channel-1-button").classList.add("pressed");
-      loadPage("pages/channel1.html");
-      screen.style.backgroundColor = "rgb(176, 227, 255)";
+        buttons.forEach(b => b.classList.remove("pressed"));
+        document.querySelector(".channel-1-button").classList.add("pressed");
+        loadPage("pages/channel1.html");
+        screen.style.backgroundColor = "rgb(176, 227, 255)";
     });
 
     document.querySelector(".channel-2-button").addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("pressed"));
-      document.querySelector(".channel-2-button").classList.add("pressed");
-      loadPage("pages/channel2.html");
-      screen.style.backgroundColor = "rgb(255, 201, 243)";
+        buttons.forEach(b => b.classList.remove("pressed"));
+        document.querySelector(".channel-2-button").classList.add("pressed");
+        loadPage("pages/channel2.html");
+        screen.style.backgroundColor = "rgb(255, 201, 243)";
     });
 
     document.querySelector(".channel-3-button").addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("pressed"));
-      document.querySelector(".channel-3-button").classList.add("pressed");
-      loadPage("pages/channel3.html");
-      screen.style.backgroundColor = "rgb(236, 252, 212)";
+        buttons.forEach(b => b.classList.remove("pressed"));
+        document.querySelector(".channel-3-button").classList.add("pressed");
+        loadPage("pages/channel3.html");
+        screen.style.backgroundColor = "rgb(236, 252, 212)";
     });
 
     loadPage("pages/channel1.html");
     document.querySelector(".channel-1-button").classList.add("pressed");
     screen.style.backgroundColor = "rgb(176, 227, 255)";
-  </script>
+</script>
 </body>
 </html>
