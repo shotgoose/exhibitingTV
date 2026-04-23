@@ -1,7 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exhibiting Technology: The Television</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
+  <div class="tv-container">
+    <div class="screen" id="screen">
+      <div class="screen-content" id="screen-content">
+        <!-- channel content -->
+      </div>
+    </div>
 
-<link rel="stylesheet" href="styles.css">
+    <button class="tv-button channel-1-button">1</button>
+    <button class="tv-button channel-2-button">2</button>
+    <button class="tv-button channel-3-button">3</button>
 
+    <div class="tv-frame"></div>
+  </div>
 
+  <script>
+    const buttons = document.querySelectorAll(".tv-button");
+    const screen = document.getElementById("screen");
+    const content = document.getElementById("screen-content");
 
+    function loadPage(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(html => {
+          content.innerHTML = html;
+          content.scrollTop = 0;
+        })
+        .catch(error => {
+          content.innerHTML = "<p>Could not load page.</p>";
+          console.error(error);
+        });
+    }
+
+    document.querySelector(".channel-1-button").addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("pressed"));
+      document.querySelector(".channel-1-button").classList.add("pressed");
+      loadPage("pages/channel1.html");
+      screen.style.backgroundColor = "rgb(176, 227, 255)";
+    });
+
+    document.querySelector(".channel-2-button").addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("pressed"));
+      document.querySelector(".channel-2-button").classList.add("pressed");
+      loadPage("pages/channel2.html");
+      screen.style.backgroundColor = "rgb(255, 201, 243)";
+    });
+
+    document.querySelector(".channel-3-button").addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("pressed"));
+      document.querySelector(".channel-3-button").classList.add("pressed");
+      loadPage("pages/channel3.html");
+      screen.style.backgroundColor = "rgb(236, 252, 212)";
+    });
+
+    loadPage("pages/channel1.html");
+    document.querySelector(".channel-1-button").classList.add("pressed");
+    screen.style.backgroundColor = "rgb(176, 227, 255)";
+  </script>
 </body>
+</html>
