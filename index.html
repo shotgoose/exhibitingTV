@@ -30,7 +30,7 @@
         fetch(page)
         .then(response => response.text())
         .then(html => {
-                content.innerHTML = `<div class="channel-page">${html}</div>`;
+                content.innerHTML = `<div class='channel-page'>${html}</div>`;
             content.scrollTop = 0;
       })
       .catch(error => {
